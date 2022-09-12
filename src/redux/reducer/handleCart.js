@@ -18,7 +18,6 @@ const handleCart = (state = cart, action) => {
           },
         ];
       }
-      break;
 
     case "DELITEM":
       const exist1 = state.find((x) => x.id === product.id);

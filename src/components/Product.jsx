@@ -53,7 +53,7 @@ const Product = () => {
   const ShowProducts = () => {
     return (
       <>
-        <div className="buttons d-flex justify-content-center mb-5 pb-5">
+        <div className="buttons d-flex justify-content-center mb-5 pb-3">
           <buttons className="btn btn-outline-dark me-2" onClick={() => setFilter(data)}>
             All
           </buttons>
@@ -79,7 +79,7 @@ const Product = () => {
             <>
               <div className="col-md-3 mb-4">
                 <div className="card h-100 text-center p-4" key={product.id}>
-                  <img src={product.image} className="card-img-top" alt={product.title} height="250px" />
+                  <img src={product.image ? product.image : "https://via.placeholder.com/500x750.png/000000/FFFFFF/%20C/O%20https://placeholder.com/?text=No+image"} alt="Gambar" className="card-img-top" height="250px" />
                   <div className="card-body">
                     <h5 className="card-title mb-0">{product.title.substring(0, 10)}</h5>
                     <p className="Card-text">${product.price}</p>
