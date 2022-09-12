@@ -13,7 +13,7 @@ const Forms = () => {
     }
 
     const buttonStyle = {
-        width: "100px"
+        width: "106px"
     }
 
     return (
@@ -57,7 +57,7 @@ const Forms = () => {
                             </Form.Group>
 
                             <Button variant="dark" style={buttonStyle} className="mt-2 ms-2" type="submit">
-                                Login
+                                <i className="fa fa-sign-in me-1"></i> Login
                             </Button> <br /><br />
 
                             <p className="ms-2 mb-5">New account?
@@ -108,7 +108,7 @@ const Forms = () => {
                             </Form.Group>
 
                             <Button variant="dark" style={buttonStyle} className="mt-2 ms-2" type="submit">
-                                Register
+                                <i className="fa fa-user-plus"></i> Register
                             </Button> <br /><br />
 
                             <p className="ms-2">Already have account?
