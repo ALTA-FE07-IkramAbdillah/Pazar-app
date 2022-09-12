@@ -13,10 +13,10 @@ function NavBar() {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
-          <Nav className="mx-auto my-2 my-lg-0" style={{ maxHeight: "100px" }} navbarScroll>
+          <Nav className="mx-auto my-2 my-lg-0 w-50 " style={{ maxHeight: "100px" }} navbarScroll>
             <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <NavLink className="nav-link active fw-bold fs-5" aria-current="page" to="/">
+                <NavLink className="nav-link active fw-bold fs-5 " aria-current="page" to="/">
                   Home
                 </NavLink>
               </li>
@@ -27,17 +27,9 @@ function NavBar() {
                 </NavLink>
               </li>
 
-              <li className="nav-item">
-                <NavLink className="nav-link active fw-bold fs-5" aria-current="page" to="/about">
-                  About
-                </NavLink>
-              </li>
-
-              <li className="nav-item">
-                <NavLink className="nav-link active fw-bold fs-5" aria-current="page" to="/contacts">
-                  Contact
-                </NavLink>
-              </li>
+              <Form className="d-flex w-75">
+                <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" />
+              </Form>
             </ul>
           </Nav>
           <Form className="buttons">
@@ -49,9 +41,9 @@ function NavBar() {
               <i className="fa fa-user-plus  me-1"></i> Register
             </NavLink>
 
-            <NavLink to="/cart" className="btn btn-outline-dark me-2">
+            {/* <NavLink to="/cart" className="btn btn-outline-dark me-2">
               <i className="fa fa-shopping-cart me-1"></i> Cart(0)
-            </NavLink>
+            </NavLink> */}
           </Form>
         </Navbar.Collapse>
       </Container>
