@@ -1,6 +1,7 @@
 import "./App.css";
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { CookiesProvider } from "react-cookie"
 import NavBar from "./components/NavBar";
 import Product from "./components/Product";
 import Jumbotron from "./components/Jumbotron";
@@ -14,6 +15,7 @@ function App() {
   return (
     <>
       {/* <Provider store={store}> */}
+      <CookiesProvider>
         <BrowserRouter>
           <NavBar />
           <Routes>
@@ -23,6 +25,7 @@ function App() {
             <Route path="/login" element={<Landing />} />
           </Routes>
         </BrowserRouter>
+      </CookiesProvider>
       {/* </Provider> */}
     </>
   );

@@ -1,20 +1,22 @@
 // Import Library
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import axios from "axios"
+import { useCookies } from "react-cookie"
 // Import Components
 import Forms from "../components/Forms";
 import backImage from "../assets/backLanding.png"
 import heroImage from "../assets/hero.png"
-import { useNavigate } from "react-router-dom";
 import { useLoginContext } from "../context";
 
 const Landing = () => {
     const navigate = useNavigate()
-    const { navLogin, handleNavLogin } = useLoginContext()
+    const [cookies, setCookies] = useCookies()
+    // set Form state
     const [login, setLogin] = useState(true)
     const [user, setUser] = useState({
-        username: "",
+        name: "",
         email: "",
         password: ""
     })
@@ -26,7 +28,7 @@ const Landing = () => {
     // Submit Register
     const handleRegister = (e) => {
         e.preventDefault()
-        axios.post("http://localhost:3000/users/register", user)
+        axios.post("http://13.214.37.101:8080/signup", user)
             .then(() => {
                 alert("Register Successfully")
                 setLogin(prev => !prev)
@@ -43,9 +45,9 @@ const Landing = () => {
     // Submit Login
     const handleLogin = (e) => {
         e.preventDefault()
-        axios.post("http://localhost:3000/login", userLogin)
-            .then(() => {
-                handleNavLogin()
+        axios.post("http://13.214.37.101:8080/login", userLogin)
+            .then((res) => {
+                setCookies("Token", res.data.data.token, { path: "/" })
                 navigate("/")
             })
             .catch(() => alert("Email / password salah"))

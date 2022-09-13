@@ -83,8 +83,8 @@ const Forms = ({ user, userLogin, login, setLogin, handleRegister, inputRegister
                                 </Form.Label>
                                 <Form.Control
                                     required
-                                    name="username"
-                                    value={user.username}
+                                    name="name"
+                                    value={user.name}
                                     onChange={(e) => inputRegister(e)}
                                     className="rounded-pill"
                                     style={{ height: "50px" }}
