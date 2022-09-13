@@ -3,16 +3,15 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import {Button} from "react-bootstrap"
+import { Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
 function NavBar() {
-
-  const [login, setLogin] = useState(true)
+  const [login, setLogin] = useState(true);
 
   return (
     <Navbar bg="light" expand="lg">
-      {login ?
+      {login ? (
         <Container>
           <Navbar.Brand className="navbar-brand fw-bold fs-1" href="#">
             Pazar
@@ -38,17 +37,18 @@ function NavBar() {
                 </Form>
               </ul>
             </Nav>
-            <Form className="buttons">
+            <Form className="button">
               <NavLink to="/cart" className="btn btn-outline-dark me-2">
                 <i className="fa fa-shopping-cart me-1"></i> Cart(0)
               </NavLink>
               <NavLink to="/profile" className="btn btn-outline-dark me-2">
                 <i className="fa fa-user me-1"></i> Profile
               </NavLink>
-              <Button onClick={() => setLogin(prev => !prev)}>TEST</Button>
+              <Button onClick={() => setLogin((prev) => !prev)}>TEST</Button>
             </Form>
           </Navbar.Collapse>
-        </Container> :
+        </Container>
+      ) : (
         <Container>
           <Navbar.Brand className="navbar-brand fw-bold fs-1" href="#">
             Pazar
@@ -74,7 +74,7 @@ function NavBar() {
                 </Form>
               </ul>
             </Nav>
-            <Form className="buttons">
+            <Form className="button">
               <NavLink to="/login" className="btn btn-outline-dark me-2">
                 <i className="fa fa-sign-in  "></i> Login
               </NavLink>
@@ -83,12 +83,11 @@ function NavBar() {
                 <i className="fa fa-user-plus  me-1"></i> Register
               </NavLink>
 
-              <Button onClick={() => setLogin(prev => !prev)}>TEST</Button>
-
+              <Button onClick={() => setLogin((prev) => !prev)}>TEST</Button>
             </Form>
           </Navbar.Collapse>
         </Container>
-      }
+      )}
     </Navbar>
   );
 }
@@ -132,7 +131,7 @@ export default NavBar;
 //                 </NavLink>
 //               </li>
 //             </ul>
-//             <div className="buttons">
+//             <div className="button">
 //               <NavLink to="/login" className="btn btn-outline-dark me-2">
 //                 <i className="fa fa-sign-in  "></i> Login
 //               </NavLink>
