@@ -1,10 +1,8 @@
 // Import Library
-import React, { useState } from "react";
+import React from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 
-const Forms = () => {
-
-    const [login, setLogin] = useState(true)
+const Forms = ({ user, userLogin, login, setLogin, handleRegister, inputRegister, handleLogin, inputLogin }) => {
 
     const spanStyle = {
         color: "blue",
@@ -26,16 +24,20 @@ const Forms = () => {
                 {login ?
                     // Login
                     <Col xl={8} className="mx-auto">
-                        <Form>
+                        <Form onSubmit={(e) => handleLogin(e)}>
                             <Form.Group className="mb-2" controlId="formBasicEmail">
                                 <Form.Label style={{ fontSize: "20px" }}>
-                                    <i class="fa fa-user"></i> Username
+                                    <i class="fa fa-envelope"></i> Email
                                 </Form.Label>
                                 <Form.Control
+                                    required
+                                    name="email"
+                                    value={userLogin.email}
+                                    onChange={inputLogin}
                                     className="rounded-pill"
                                     style={{ height: "50px" }}
                                     type="text"
-                                    placeholder="Username"
+                                    placeholder="Email"
                                     aria-describedby="basic-addon1"
                                 />
                             </Form.Group>
@@ -45,6 +47,10 @@ const Forms = () => {
                                     <i className="fa fa-lock"></i> Password
                                 </Form.Label>
                                 <Form.Control
+                                    required
+                                    name="password"
+                                    value={userLogin.password}
+                                    onChange={inputLogin}
                                     className="rounded-pill"
                                     type="password"
                                     placeholder="Password"
@@ -70,12 +76,16 @@ const Forms = () => {
 
                     // Register
                     <Col xl={8} className="mx-auto">
-                        <Form>
+                        <Form onSubmit={(e) => handleRegister(e)}>
                             <Form.Group className="mb-2" controlId="formBasicEmail">
                                 <Form.Label style={{ fontSize: "20px" }}>
                                     <i class="fa fa-user"></i> Username
                                 </Form.Label>
                                 <Form.Control
+                                    required
+                                    name="username"
+                                    value={user.username}
+                                    onChange={(e) => inputRegister(e)}
                                     className="rounded-pill"
                                     style={{ height: "50px" }}
                                     type="text"
@@ -88,9 +98,13 @@ const Forms = () => {
                                     <i class="fa fa-envelope"></i> Email
                                 </Form.Label>
                                 <Form.Control
+                                    required
+                                    name="email"
+                                    value={user.email}
+                                    onChange={(e) => inputRegister(e)}
                                     className="rounded-pill"
                                     style={{ height: "50px" }}
-                                    type="text"
+                                    type="email"
                                     placeholder="Email"
                                 />
                             </Form.Group>
@@ -100,14 +114,23 @@ const Forms = () => {
                                     <i class="fa fa-lock"></i> Password
                                 </Form.Label>
                                 <Form.Control
+                                    required
+                                    name="password"
+                                    value={user.password}
+                                    onChange={(e) => inputRegister(e)}
                                     className="rounded-pill"
                                     style={{ height: "50px" }}
-                                    type="text"
+                                    type="password"
                                     placeholder="Password"
                                 />
                             </Form.Group>
 
-                            <Button variant="dark" style={buttonStyle} className="mt-2 ms-2" type="submit">
+                            <Button
+                                variant="dark"
+                                style={buttonStyle}
+                                className="mt-2 ms-2"
+                                type="submit"
+                            >
                                 <i className="fa fa-user-plus"></i> Register
                             </Button> <br /><br />
 

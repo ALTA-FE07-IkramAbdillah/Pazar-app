@@ -14,15 +14,15 @@ function App() {
   return (
     <>
       {/* <Provider store={store}> */}
-      <BrowserRouter>
-        <NavBar />
-        <Routes>
-          <Route exact path="/" element={<Jumbotron />} />
-          <Route path="/products" element={<Product />} />
-          <Route path="/products/:id" element={<Detail />} />
-          <Route path="/login" element={<Landing />} />
-        </Routes>
-      </BrowserRouter>
+        <BrowserRouter>
+          <NavBar />
+          <Routes>
+            <Route exact path="/" element={<Jumbotron />} />
+            <Route path="/products" element={<Product />} />
+            <Route path="/products/:id" element={<Detail />} />
+            <Route path="/login" element={<Landing />} />
+          </Routes>
+        </BrowserRouter>
       {/* </Provider> */}
     </>
   );

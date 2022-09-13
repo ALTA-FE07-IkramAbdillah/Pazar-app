@@ -5,14 +5,15 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import {Button} from "react-bootstrap"
 import { NavLink } from "react-router-dom";
+import { useLoginContext } from "../context";
 
 function NavBar() {
 
-  const [login, setLogin] = useState(true)
+  const {navLogin} = useLoginContext()
 
   return (
     <Navbar bg="light" expand="lg">
-      {login ?
+      {navLogin ?
         <Container>
           <Navbar.Brand className="navbar-brand fw-bold fs-1" href="#">
             Pazar
@@ -45,7 +46,6 @@ function NavBar() {
               <NavLink to="/profile" className="btn btn-outline-dark me-2">
                 <i className="fa fa-user me-1"></i> Profile
               </NavLink>
-              <Button onClick={() => setLogin(prev => !prev)}>TEST</Button>
             </Form>
           </Navbar.Collapse>
         </Container> :
@@ -82,8 +82,6 @@ function NavBar() {
               <NavLink to="/register" className="btn btn-outline-dark me-2">
                 <i className="fa fa-user-plus  me-1"></i> Register
               </NavLink>
-
-              <Button onClick={() => setLogin(prev => !prev)}>TEST</Button>
 
             </Form>
           </Navbar.Collapse>
