@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Jumbotron from "../components/Jumbotron";
-import CardComponent from "../components/Card";
+import Card1 from "../components/Card";
 import Container from "react-bootstrap/Container";
-import { withRouter } from "../withRouter";
 
-const Home = () => {
+const Product = () => {
   const navigate = useNavigate();
   const [datas, setDatas] = useState([]);
 
@@ -51,7 +49,6 @@ const Home = () => {
 
   return (
     <>
-      <Jumbotron />
       <div>
         <h1 className="display-6 fw-bolder text-center my-3 py-3">Products</h1>
       </div>
@@ -60,7 +57,7 @@ const Home = () => {
           {datas.map((item, index) => {
             return (
               <div className="col-3" key={index}>
-                <CardComponent detail={() => handleDetailPage(item)} name={item.name} photo={item.photo} description={item.detail} price={item.price} />
+                <Card1 detail={() => handleDetailPage(item)} name={item.name} photo={item.photo} description={item.detail} price={item.price} />
               </div>
             );
           })}
@@ -70,4 +67,4 @@ const Home = () => {
   );
 };
 
-export default withRouter(Home);
+export default Product;
