@@ -1,32 +1,29 @@
 import "./App.css";
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { CookiesProvider } from "react-cookie"
+import { CookiesProvider } from "react-cookie";
 import NavBar from "./components/NavBar";
 import Product from "./components/Product";
-import Jumbotron from "./components/Jumbotron";
 import Detail from "./components/Detail";
-import Landing from "./pages/Landing";
-
-// import { Provider } from "react-redux";
-// import store from "./redux/reducer/store";
+import LoginPage from "./pages/loginPage";
+import RegisterPage from "./pages/RegisterPage";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
     <>
-      {/* <Provider store={store}> */}
       <CookiesProvider>
         <BrowserRouter>
           <NavBar />
           <Routes>
-            <Route exact path="/" element={<Jumbotron />} />
+            <Route exact path="/" element={<HomePage />} />
             <Route path="/products" element={<Product />} />
             <Route path="/products/:id" element={<Detail />} />
-            <Route path="/login" element={<Landing />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
           </Routes>
         </BrowserRouter>
       </CookiesProvider>
-      {/* </Provider> */}
     </>
   );
 }

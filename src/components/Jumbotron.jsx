@@ -1,6 +1,5 @@
 import React from "react";
 import ciwi from "../assets/bg.jpg";
-import Product from "./Product";
 
 function Jumbotron() {
   return (
@@ -14,7 +13,6 @@ function Jumbotron() {
           </div>
         </div>
       </div>
-      <Product />
     </div>
   );
 }
