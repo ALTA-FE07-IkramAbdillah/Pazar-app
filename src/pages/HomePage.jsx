@@ -34,7 +34,7 @@ const HomePage = () => {
   };
 
   const handleDetailPage = (item) => {
-    navigate(`/detail/${item.id}`, {
+    navigate(`/detailpage/${item.id}`, {
       state: {
         id: item.id,
         name: item.name,
@@ -58,7 +58,7 @@ const HomePage = () => {
         <div className="row d-flex justify-content-around">
           {datas.map((item, index) => {
             return (
-              <div className="col-3" key={index}>
+              <div className="col-12 col-sm-4 col-xl-3" key={index}>
                 <CardComponent detail={() => handleDetailPage(item)} name={item.name} photo={item.url} category={item.category} price={item.price} />
               </div>
             );

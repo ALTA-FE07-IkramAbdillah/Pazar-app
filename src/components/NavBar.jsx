@@ -38,7 +38,7 @@ function NavBar() {
                 </li>
 
                 <Form className="d-flex w-75">
-                  <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" />
+                  <Form.Control type="search" placeholder="Search" className="me-2 ms-2" aria-label="Search" />
                 </Form>
               </ul>
             </Nav>
@@ -78,7 +78,7 @@ function NavBar() {
                 </li>
 
                 <Form className="d-flex w-75">
-                  <Form.Control type="search" placeholder="Search" className="me-2" aria-label="Search" />
+                  <Form.Control type="search" placeholder="Search" className="me-2 ms-2" aria-label="Search" />
                 </Form>
               </ul>
             </Nav>

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import CardComponent from "../components/CardComponent";
 import Container from "react-bootstrap/Container";
 
 const ProductPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [datas, setDatas] = useState([]);
 
   useEffect(() => {
@@ -34,7 +35,7 @@ const ProductPage = () => {
   };
 
   const handleDetailPage = (item) => {
-    navigate(`/detail/${item.id}`, {
+    navigate(`/detailpage/${item.id}`, {
       state: {
         id: item.id,
         name: item.name,
