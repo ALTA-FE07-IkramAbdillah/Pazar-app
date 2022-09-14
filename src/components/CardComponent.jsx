@@ -1,14 +1,14 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 
-const CardComponent = ({ id, name, price, photo, description, detail }) => {
+const CardComponent = ({ id, name, price, photo, description, detail, category }) => {
   return (
     <>
       <Card className="my-3" onClick={detail} style={{ width: "18rem" }}>
         <Card.Img variant="top" src={photo} alt="gambar.jpg" />
         <Card.Body>
           <Card.Title className="display-7 fw-bolder">{name}</Card.Title>
-          <Card.Text>{description}{photo}</Card.Text>
+          <Card.Text>{category}</Card.Text>
           <Card.Text className="fw-bolder">IDR.{price}</Card.Text>
         </Card.Body>
         <div className="mx-auto mb-3">

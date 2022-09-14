@@ -60,7 +60,7 @@ const HomePage = () => {
           {datas.map((item, index) => {
             return (
               <div className="col-3" key={index}>
-                <CardComponent detail={() => handleDetailPage(item)} name={item.name} photo={item.url} description={item.detail} price={item.price} />
+                <CardComponent detail={() => handleDetailPage(item)} name={item.name} photo={item.url} description={item.detail} price={item.price} category={item.category}/>
               </div>
             );
           })}
