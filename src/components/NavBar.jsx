@@ -5,20 +5,18 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { NavLink } from "react-router-dom";
 import { useLoginContext } from "../context";
-import { useCookies } from "react-cookie"
+import { useCookies } from "react-cookie";
 
 function NavBar() {
-
   const [cookies, setCookies, removeCookie] = useCookies();
 
   const handleRemove = () => {
-    removeCookie("Token")
-  }
+    removeCookie("Token");
+  };
 
   return (
     <Navbar bg="light" expand="lg">
-      <button onClick={handleRemove}>Remove Cookie</button>
-      {cookies.Token ?
+      {cookies.Token ? (
         <Container>
           <Navbar.Brand className="navbar-brand fw-bold fs-1" href="#">
             Pazar
@@ -51,10 +49,14 @@ function NavBar() {
               <NavLink to="/profile" className="btn btn-outline-dark me-2">
                 <i className="fa fa-user me-1"></i> Profile
               </NavLink>
+              <NavLink to="/register" className="btn btn-outline-dark me-2" onClick={handleRemove}>
+                <i className="fa fa-sign-out me-1"></i> Logout
+              </NavLink>
               {/* <Button onClick={() => setLogin(prev => !prev)}>TEST</Button> */}
             </Form>
           </Navbar.Collapse>
-        </Container> :
+        </Container>
+      ) : (
         <Container>
           <Navbar.Brand className="navbar-brand fw-bold fs-1" href="#">
             Pazar
@@ -90,11 +92,10 @@ function NavBar() {
               </NavLink>
 
               {/* <Button onClick={() => setLogin(prev => !prev)}>TEST</Button> */}
-
             </Form>
           </Navbar.Collapse>
         </Container>
-      }
+      )}
     </Navbar>
   );
 }
