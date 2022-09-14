@@ -8,7 +8,6 @@ import { useCookies } from "react-cookie"
 import Forms from "../components/Forms";
 import backImage from "../assets/backLanding.png"
 import heroImage from "../assets/hero.png"
-import { useLoginContext } from "../context";
 
 const Landing = () => {
     const navigate = useNavigate()
