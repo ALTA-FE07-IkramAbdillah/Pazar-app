@@ -1,7 +1,7 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 
-const CardComponent = ({ id, name, price, photo, description, detail, category }) => {
+const CardComponent = ({ id, name, price, photo, category, detail }) => {
   return (
     <>
       <Card className="my-3" onClick={detail} style={{ width: "18rem" }}>
