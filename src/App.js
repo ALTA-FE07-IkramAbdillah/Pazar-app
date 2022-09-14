@@ -6,6 +6,7 @@ import Product from "./components/Product";
 import Jumbotron from "./components/Jumbotron";
 import Detail from "./components/Detail";
 import Landing from "./pages/Landing";
+import Profile from "./pages/Profile";
 
 // import { Provider } from "react-redux";
 // import store from "./redux/reducer/store";
@@ -21,6 +22,7 @@ function App() {
           <Route path="/products" element={<Product />} />
           <Route path="/products/:id" element={<Detail />} />
           <Route path="/login" element={<Landing />} />
+          <Route path="profile" element={<Profile />} />
         </Routes>
       </BrowserRouter>
       {/* </Provider> */}
