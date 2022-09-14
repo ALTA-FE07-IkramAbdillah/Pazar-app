@@ -17,7 +17,7 @@ const HomePage = () => {
 
     var config = {
       method: "get",
-      url: "https://virtserver.swaggerhub.com/iffakhry/ecommerce/1.0.0/products",
+      url: "http://13.214.37.101:8080/products",
       headers: {
         "Content-Type": "application/json",
       },
@@ -49,6 +49,7 @@ const HomePage = () => {
   };
 
   return (
+    
     <>
       <Jumbotron />
       <div>
@@ -59,7 +60,7 @@ const HomePage = () => {
           {datas.map((item, index) => {
             return (
               <div className="col-3" key={index}>
-                <CardComponent detail={() => handleDetailPage(item)} name={item.name} photo={item.photo} description={item.detail} price={item.price} />
+                <CardComponent detail={() => handleDetailPage(item)} name={item.name} photo={item.url} description={item.detail} price={item.price} />
               </div>
             );
           })}
