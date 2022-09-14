@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Jumbotron from "../components/Jumbotron";
+
 import CardComponent from "../components/CardComponent";
 import Container from "react-bootstrap/Container";
 
-const HomePage = () => {
+const ProductPage = () => {
   const navigate = useNavigate();
   const [datas, setDatas] = useState([]);
 
@@ -50,10 +50,6 @@ const HomePage = () => {
 
   return (
     <>
-      <Jumbotron />
-      <div>
-        <h1 className="display-6 fw-bolder text-center my-3 py-3">Products</h1>
-      </div>
       <Container>
         <div className="row d-flex justify-content-around">
           {datas.map((item, index) => {
@@ -69,4 +65,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default ProductPage;
