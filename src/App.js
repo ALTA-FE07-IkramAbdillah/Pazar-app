@@ -17,10 +17,9 @@ import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   const [cookies] = useCookies();
-
   // Set bearer token
   axios.defaults.headers.common = {
-    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NjMxOTYxMzIsInVzZXJJZCI6Mn0.6G5NiHcOmu-YcZ_VJSICBzicLLqzazOJP6ygEvM2yIU`,
+    Authorization: `Bearer ${cookies.Token}`,
   };
 
   return (

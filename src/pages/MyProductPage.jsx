@@ -21,8 +21,8 @@ const MyProductPage = () => {
     const [add, setAdd] = useState({
         name: "",
         detail: "",
-        stock: "",
-        price: "",
+        stock: 0,
+        price: 0,
         category: "",
         url: ""
     })
@@ -39,11 +39,34 @@ const MyProductPage = () => {
 
     const [cookies] = useCookies()
     // Add Product
-    const handleAdd = () => {
-        axios.post("http://13.214.37.101:8080/products",add)
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err))
+    const handleAdd = (e) => {
+        e.preventDefault()
+
+        var data = JSON.stringify({
+            "name": add.name,
+            "detail": add.detail,
+            "stock": parseInt(add.stock),
+            "price": parseInt(add.price),
+            "url": add.url,
+            "category": add.category
+        });
+
+        axios.post("http://13.214.37.101:8080/products", data, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+            .then((res) => {
+                console.log(res)
+                getApi()
+                handleClose()
+            })
+            .catch(err => alert(err.response.data)
+            )
+
     }
+
     // Input Data
     const inputData = (e) => {
         console.log(e.target.value)
@@ -59,8 +82,13 @@ const MyProductPage = () => {
     }
 
     // Delete Product
-    const handleDelete = () => {
-        alert("Product Terhapus")
+    const handleDelete = (id) => {
+        axios.delete(`http://13.214.37.101:8080/products/${id}`)
+            .then(() => {
+                getApi()
+                alert("Product Terhapus")
+            })
+            .catch(err => console.log(err.response.data))
     }
 
     return (
@@ -84,8 +112,8 @@ const MyProductPage = () => {
                                 <td className="pt-4">{obj.name}</td>
                                 <td className="pt-4">{obj.price}</td>
                                 <td className="text-center w-25 pt-3">
-                                    <Button onClick={handleEdit} variant="outline-dark" className="me-2"><i class="fa fa-pencil"></i> Edit</Button>
-                                    <Button onClick={handleDelete} variant="outline-danger"><i class="fa fa-trash"></i> Delete</Button>
+                                    <Button onClick={handleEdit} variant="outline-dark" className="me-2"><i className="fa fa-pencil"></i> Edit</Button>
+                                    <Button onClick={() => handleDelete(obj.id)} variant="outline-danger"><i className="fa fa-trash"></i> Delete</Button>
                                 </td>
                             </tr>
                         )

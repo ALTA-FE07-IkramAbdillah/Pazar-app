@@ -16,7 +16,7 @@ const ModalProduct = ({ edit, show, handleClose, handleShow, add, handleAdd, inp
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form>
+                    <Form onSubmit={(e) => handleAdd(e)}>
                         <FloatingLabel
                             controlId="floatingInput"
                             label="Nama Product"
@@ -96,7 +96,7 @@ const ModalProduct = ({ edit, show, handleClose, handleShow, add, handleAdd, inp
                                 type="text"
                                 placeholder="name@example.com" />
                         </FloatingLabel>
-                        <Button onClick={handleAdd}>SUBMIT DATA</Button>
+                        <Button type="submit">SUBMIT DATA</Button>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
