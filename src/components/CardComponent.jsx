@@ -4,7 +4,7 @@ import Card from "react-bootstrap/Card";
 const CardComponent = ({ id, name, price, photo, category, detail }) => {
   return (
     <>
-      <Card className="my-3" onClick={detail} style={{ width: "18rem" }}>
+      <Card className="my-3 " onClick={detail} style={{ width: "18rem" }}>
         <Card.Img variant="top" src={photo} alt="gambar.jpg" />
         <Card.Body>
           <Card.Title className="display-7 fw-bolder">{name}</Card.Title>

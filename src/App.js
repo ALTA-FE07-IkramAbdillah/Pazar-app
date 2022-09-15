@@ -9,6 +9,7 @@ import RegisterPage from "./pages/RegisterPage";
 import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
 import DetailPage from "./pages/DetailPage";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   const [cookies] = useCookies();
@@ -29,6 +30,7 @@ function App() {
             <Route path="/detailpage/:id" element={<DetailPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
           </Routes>
         </BrowserRouter>
       </CookiesProvider>
