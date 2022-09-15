@@ -4,24 +4,24 @@ const LoginContext = createContext();
 
 export const useLoginContext = () => {
     const context = useContext(LoginContext)
-    const [navLogin, setNavLogin] = context.navLogin
+    const [cart, setCart] = context.cart
 
-    const handleNavLogin = () => {
-        setNavLogin(prev => !prev)
+    const handleCart = (data) => {
+        setCart([...cart,data])
     }
 
     return {
-        navLogin,
-        handleNavLogin
+        cart,
+        handleCart
     }
 }
 
 export const LoginProvider = ({ children }) => {
-    const [navLogin, setNavLogin] = useState(false)
+    const [cart, setCart] = useState([])
 
     return (
         <LoginContext.Provider
-            value={{ navLogin: [navLogin, setNavLogin] }}
+            value={{ cart: [cart, setCart] }}
         >
             {children}
         </LoginContext.Provider>
