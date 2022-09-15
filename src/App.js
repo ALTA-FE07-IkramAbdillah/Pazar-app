@@ -15,6 +15,7 @@ import DetailPage from "./pages/DetailPage";
 import MyProductPage from "./pages/MyProductPage";
 import ProfilePage from "./pages/ProfilePage";
 import CartPage from "./pages/CartPage";
+import OrderPage from "./pages/OrderPage";
 
 function App() {
   const [cookies] = useCookies();
@@ -37,6 +38,7 @@ function App() {
             <Route path="/myproducts" element={<MyProductPage />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/order" element={<OrderPage />} />
           </Routes>
         </BrowserRouter>
       </CookiesProvider>
