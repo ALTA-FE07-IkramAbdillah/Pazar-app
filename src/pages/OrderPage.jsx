@@ -91,7 +91,6 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
-import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
 import JordanBrown from "../images/JordanBrown.png"
 import JordanBlack from "../images/JordanBlack.png"
@@ -112,6 +111,8 @@ function OrderPage() {
     }
 
     setValidated(true);
+
+
   };
 
   return (
@@ -125,11 +126,13 @@ function OrderPage() {
       <Card.Title>Shoes Mart</Card.Title>
         <Card.Title><h3>Tsubasa Shoes</h3></Card.Title>
         <Card.Text>
-        Nike_Air_Jordan_XIII_13_Retro_Kid_Children_Shoes_Brown
-        Style AR4491-025
-Colorway LIGHT BROWN
-Retail Price $225
-Release Date 11/24/2021
+            <Card.Text>Style AR4491-025 Nike_Air_Jordan_XIII_13_Retro_Kid_Children_Shoes_Brown</Card.Text>
+            <Card.Text>Colorway LIGHT BROWN</Card.Text>
+            <Card.Text>Release Date 11/24/2021</Card.Text>
+            <Card.Text>Retail Price $225</Card.Text>
+
+
+
         </Card.Text>
         <ButtonGroup aria-label="Basic example">
       <Button variant="secondary">-</Button>
@@ -146,19 +149,17 @@ Release Date 11/24/2021
       <Card.Title>Jordan Store</Card.Title>
         <Card.Title><h3>Hyuga Shoes</h3></Card.Title>
         <Card.Text>
-          
-Style
-439358-021
-
-Colorway
-BLACK/METALLIC GOLD-WHITE-GUM MEDIUM BROWN
-
-Retail Price
-$140
-
-Release Date
-02/24/2018
+          <Card.Text>Style
+439358-021</Card.Text>
+          <Card.Text>Colorway
+BLACK/METALLIC GOLD-WHITE-GUM MEDIUM </Card.Text>
+          <Card.Text>
+          Release Date
+02/24/2018 </Card.Text>
+          <Card.Text>Retail Price
+$140</Card.Text>
         </Card.Text>
+
         <ButtonGroup aria-label="Basic example">
       <Button variant="secondary">-</Button>
       <Button variant="light">1</Button>
@@ -166,28 +167,23 @@ Release Date
     </ButtonGroup>
       </Card.Body>
     </Card>
+    <h1 align="right">Total Price : $ 365,-</h1>
+    <div>
+        <Card border="dark">
+
       <Row className="mb-3">
-        <Form.Group as={Col} md="4" controlId="validationCustom01">
-          <Form.Label>First name</Form.Label>
+        <Form.Group as={Col} md="6" controlId="validationCustom01">
+          <Form.Label>extra note for courier</Form.Label>
           <Form.Control
             required
             type="text"
-            placeholder="First name"
-            defaultValue="Mark"
+            placeholder="type here.."
+            defaultValue=""
           />
           <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
         </Form.Group>
-        <Form.Group as={Col} md="4" controlId="validationCustom02">
-          <Form.Label>Last name</Form.Label>
-          <Form.Control
-            required
-            type="text"
-            placeholder="Last name"
-            defaultValue="Otto"
-          />
-          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-        </Form.Group>
-        <Form.Group as={Col} md="4" controlId="validationCustomUsername">
+       
+        <Form.Group as={Col} md="6" controlId="validationCustomUsername">
           <Form.Label>Shipping address</Form.Label>
           <DropdownButton variant="secondary" md="4"  id="dropdown-basic-button" title="address">
       <Dropdown.Item href="#/action-1">jakarta</Dropdown.Item>
@@ -223,6 +219,8 @@ Release Date
         />
       </Form.Group>
       <Button type="submit">I'm sure</Button>
+      </Card>
+      </div>
     </Form>
   );
 }
