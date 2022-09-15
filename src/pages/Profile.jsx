@@ -44,7 +44,7 @@ const Profile = () => {
 
             <Row className="mb-4">
               <Col className="text-end">
-                <i className="fa fa-user fa-list-radio fa-2x"></i>
+                <i className="fa fa-list fa-2x"></i>
               </Col>
               <Col className="text-start">
                 <h6>
@@ -57,7 +57,7 @@ const Profile = () => {
 
             <Row className="mb-4">
               <Col className="text-end">
-                <i className="fa fa-user fa-xmark fa-2x"></i>
+                <i className="fa fa-trash fa-2x"></i>
               </Col>
               <Col className="text-start">
                 <NavLink>
@@ -95,13 +95,13 @@ const Profile = () => {
 
           <Col xs={4}>
             <div className="vl">
-              <div className="m-3">
+              <div className="ms-5 ps-3">
                 <i class="fa fa-user fa-5x"></i>
               </div>
               <Button
                 to="/"
                 variant="light"
-                className="btn btn-outline-white border-dark mx-3"
+                className="btn btn-outline-white border-dark mx-4 my-4"
               >
                 <i className="fa fa-image"></i> Browse Image
               </Button>
