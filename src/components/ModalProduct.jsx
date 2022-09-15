@@ -5,10 +5,6 @@ const ModalProduct = ({ edit, show, handleClose, handleShow, add, handleAdd, inp
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
-                Launch demo modal
-            </Button>
-
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>
@@ -64,6 +60,7 @@ const ModalProduct = ({ edit, show, handleClose, handleShow, add, handleAdd, inp
                             className="mb-3"
                         >
                             <Form.Control
+                                disabled={edit && true}
                                 name="price"
                                 value={add.price}
                                 onChange={(e) => inputData(e)}
@@ -77,6 +74,7 @@ const ModalProduct = ({ edit, show, handleClose, handleShow, add, handleAdd, inp
                             className="mb-3"
                         >
                             <Form.Control
+                                disabled={edit && true}
                                 name="category"
                                 value={add.category}
                                 onChange={(e) => inputData(e)}
@@ -90,23 +88,19 @@ const ModalProduct = ({ edit, show, handleClose, handleShow, add, handleAdd, inp
                             className="mb-3"
                         >
                             <Form.Control
+                                disabled={edit && true}
                                 name="url"
                                 value={add.url}
                                 onChange={(e) => inputData(e)}
                                 type="text"
                                 placeholder="name@example.com" />
                         </FloatingLabel>
-                        <Button type="submit">SUBMIT DATA</Button>
+                        <Button type="submit" className="float-end">{edit ? "Edit Product" : "Add Product"}</Button>
+                        <Button className="float-end me-2" variant="secondary" onClick={handleClose}>
+                            Cancel
+                        </Button>
                     </Form>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="primary" >
-                        Save Changes
-                    </Button>
-                </Modal.Footer>
             </Modal>
         </>
     );
