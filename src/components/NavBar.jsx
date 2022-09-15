@@ -37,6 +37,12 @@ function NavBar() {
                   </NavLink>
                 </li>
 
+                <li className="nav-item">
+                  <NavLink className="nav-link active fw-bold fs-5" aria-current="page" to="/myproducts">
+                    MyProduct
+                  </NavLink>
+                </li>
+
                 <Form className="d-flex w-75">
                   <Form.Control type="search" placeholder="Search" className="me-2 ms-2" aria-label="Search" />
                 </Form>
