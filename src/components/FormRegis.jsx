@@ -25,19 +25,19 @@ const FormRegis = ({ user, userLogin, login, setLogin, handleRegister, inputRegi
               <Form onSubmit={(e) => handleRegister(e)}>
                 <Form.Group className="mb-2" controlId="formBasicEmail">
                   <Form.Label style={{ fontSize: "20px" }}>
-                    <i class="fa fa-user"></i> Username
+                    <i className="fa fa-user"></i> Username
                   </Form.Label>
                   <Form.Control required name="name" value={user.name} onChange={(e) => inputRegister(e)} className="rounded-pill" style={{ height: "50px" }} type="text" placeholder="Username" />
                 </Form.Group>
                 <Form.Group className="mb-2" controlId="formBasicPassword">
                   <Form.Label style={{ fontSize: "20px" }}>
-                    <i class="fa fa-envelope"></i> Email
+                    <i className="fa fa-envelope"></i> Email
                   </Form.Label>
                   <Form.Control required name="email" value={user.email} onChange={(e) => inputRegister(e)} className="rounded-pill" style={{ height: "50px" }} type="email" placeholder="Email" />
                 </Form.Group>
                 <Form.Group className="mb-2" controlId="formBasicPassword">
                   <Form.Label style={{ fontSize: "20px" }}>
-                    <i class="fa fa-lock"></i> Password
+                    <i className="fa fa-lock"></i> Password
                   </Form.Label>
                   <Form.Control required name="password" value={user.password} onChange={(e) => inputRegister(e)} className="rounded-pill" style={{ height: "50px" }} type="password" placeholder="Password" />
                 </Form.Group>
@@ -60,7 +60,7 @@ const FormRegis = ({ user, userLogin, login, setLogin, handleRegister, inputRegi
               <Form onSubmit={(e) => handleLogin(e)}>
                 <Form.Group className="mb-2" controlId="formBasicEmail">
                   <Form.Label style={{ fontSize: "20px" }}>
-                    <i class="fa fa-envelope"></i> Email
+                    <i className="fa fa-envelope"></i> Email
                   </Form.Label>
                   <Form.Control required name="email" value={userLogin.email} onChange={inputLogin} className="rounded-pill" style={{ height: "50px" }} type="text" placeholder="Email" aria-describedby="basic-addon1" />
                 </Form.Group>

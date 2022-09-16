@@ -73,19 +73,20 @@ const ProfilePage = () => {
   };
 
   // Edit Profile
-  const handleEdit = (id) => {
-    axios.get(`http://13.214.37.101:8080/users/details/${id}`).then((res) => {
-      setAdd(res.data.data);
-      setEdit(true);
-    });
+  const handleEdit = (e) => {
+    e.preventDefault();
+    axios
+      .put(`http://13.214.37.101:8080/users`, add)
+      .then(() => getApi())
+      .catch((err) => console.log(err.response.data));
   };
 
-  // Delete Product
+  // Delete Account
   const handleDelete = () => {
+    removeCookie("Token");
     axios
       .delete(`http://13.214.37.101:8080/users`)
       .then(() => {
-        removeCookie("Token");
         getApi();
         alert("Account deleted");
       })
@@ -96,7 +97,7 @@ const ProfilePage = () => {
     <>
       <Container className="py-3">
         <Row>
-          <Col xs={3} className="border border-dark">
+          <Col xs={5} xl={3} className="border border-dark">
             <div className="d-flex mt-2">
               <img className="d-flex border border-dark" src="https://cf.shopee.co.id/file/4ea8db682dee4cf9a167b78eabc39c0b" alt="foto" height="150" width="150" />
               <div className="mt-5 ms-2">
@@ -125,14 +126,14 @@ const ProfilePage = () => {
               <h5 className="mt-3 ms-2">Manage Product</h5>
             </div>
             <div className="d-flex">
-              <NavLink to="/register" className="btn btn-outline-danger mt-3 ms-3 " onClick={() => handleDelete(list.id)}>
+              <NavLink to="/register" className="btn btn-outline-danger mt-3 ms-3 " onClick={handleDelete}>
                 <i className="fa fa-trash"></i>
               </NavLink>
               <h5 className="mt-3 ms-2 text-danger">Delete Account</h5>
             </div>
           </Col>
-          <Col className="border border-dark">
-            <FormProfile id={list.id} name={list.name} email={list.email} />
+          <Col xs={7} xl={9} className="border border-dark">
+            <FormProfile handleEdit={handleEdit} inputData={inputData} id={list.id} name={add.name} email={list.email} />
           </Col>
         </Row>
       </Container>
