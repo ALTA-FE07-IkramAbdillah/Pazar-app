@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Container, Table } from "react-bootstrap";
 import { useCookies } from "react-cookie";
 import ModalProduct from "../components/ModalProduct";
+import { AnimationOnScroll } from 'react-animation-on-scroll';
 
 const MyProductPage = () => {
   // Modal Product
@@ -108,54 +109,56 @@ const MyProductPage = () => {
   };
 
   return (
-    <Container>
-      <h1 className="text-center my-3">My Product</h1>
-      <Button className="float-end" variant="dark" onClick={handleShow}>
-        + Product
-      </Button>
-      <Table striped bordered hover className="text-center">
-        <thead>
-          <tr>
-            <th>Gambar</th>
-            <th>Nama Produk</th>
-            <th>Stock</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {list.map((obj, idx) => {
-            return (
-              <tr key={idx}>
-                <td>
-                  <img src={obj.url} alt="kaos" width={60} height={60} />
-                </td>
-                <td className="pt-4">{obj.name}</td>
-                <td className="pt-4">{obj.stock}</td>
-                <td className="text-center w-25 pt-3">
-                  <Button onClick={() => handleEdit(obj.id)} variant="outline-dark" className="me-2">
-                    <i className="fa fa-pencil"></i> Edit
-                  </Button>
-                  <Button onClick={() => handleDelete(obj.id)} variant="outline-danger">
-                    <i className="fa fa-trash"></i> Delete
-                  </Button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </Table>
+      <Container>
+        <h1 className="text-center my-3">My Product</h1>
+        <Button className="float-end" variant="dark" onClick={handleShow}>
+          + Product
+        </Button>
+        <Table striped bordered hover className="text-center">
+          <thead>
+            <tr>
+              <th>Gambar</th>
+              <th>Nama Produk</th>
+              <th>Stock</th>
+              <th>Action</th>
+            </tr>
+          </thead>
 
-      <ModalProduct
-        // StateModal
-        show={show}
-        handleShow={handleShow}
-        handleClose={handleClose}
-        edit={edit}
-        add={add}
-        handleAdd={handleAdd}
-        inputData={inputData}
-      />
-    </Container>
+          <tbody>
+            {list.map((obj, idx) => {
+              return (
+
+                <tr key={idx}>
+                  <td>
+                    <img src={obj.url} alt="kaos" width={60} height={60} />
+                  </td>
+                  <td className="pt-4">{obj.name}</td>
+                  <td className="pt-4">{obj.stock}</td>
+                  <td className="text-center w-25 pt-3">
+                    <Button onClick={() => handleEdit(obj.id)} variant="outline-dark" className="me-2">
+                      <i className="fa fa-pencil"></i> Edit
+                    </Button>
+                    <Button onClick={() => handleDelete(obj.id)} variant="outline-danger">
+                      <i className="fa fa-trash"></i> Delete
+                    </Button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </Table>
+
+        <ModalProduct
+          // StateModal
+          show={show}
+          handleShow={handleShow}
+          handleClose={handleClose}
+          edit={edit}
+          add={add}
+          handleAdd={handleAdd}
+          inputData={inputData}
+        />
+      </Container >
   );
 };
 
