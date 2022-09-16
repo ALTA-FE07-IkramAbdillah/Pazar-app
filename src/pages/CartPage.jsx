@@ -1,17 +1,29 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { Table, Button, FloatingLabel, Form } from "react-bootstrap"
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
+import ModalCart from "../components/ModalCart"
 import { useLoginContext } from "../context"
 
 const CartPage = () => {
 
     const location = useLocation()
+    const navigate = useNavigate()
     const { cart } = useLoginContext()
 
     const [list, setList] = useState([])
     const [edit, setEdit] = useState(false)
     const [total, setTotal] = useState("")
+    const [temp, setTemp] = useState("")
+
+    // Modal Product
+    const [show, setShow] = useState(false);
+    const handleClose = () => {
+        setShow(false);
+        setEdit(false);
+    };
+    const handleShow = () => setShow(true);
+    // dont distract
 
     // get api
     const getApi = () => {
@@ -30,18 +42,18 @@ const CartPage = () => {
 
     // edit cart
     const handleEdit = ({ id, quantity }) => {
-        setEdit(true)
+        setEdit(prev => !prev)
+        setTemp(id)
         setTotal(quantity)
     }
 
     // input edit
     const handleInput = (e) => {
-        console.log(e.target.value)
         setTotal(e.target.value)
     }
 
     // submit edit
-    const handleSubmit = ({ id },e) => {
+    const handleSubmit = ({ id }, e) => {
         e.preventDefault()
         var data = JSON.stringify({
             "quantity": parseInt(total)
@@ -58,8 +70,67 @@ const CartPage = () => {
         setEdit(prev => !prev)
     }
 
+
+
+    const [cartId, setCartId] = useState("")
+
+    const [alamat, setAlamat] = useState({
+        receiver: "",
+        phone: "",
+        address: ""
+    })
+
+    // input cartId
+    const handleId = (id) => {
+        handleShow()
+        setCartId(id)
+    }
+
+    // input data
+    const inputData = (e) => {
+        let newAlamat = { ...alamat };
+        newAlamat[e.target.name] = e.target.value;
+        setAlamat(newAlamat);
+    }
+
+    // Go to order
+    const handleOrder = (e) => {
+        e.preventDefault()
+        var axios = require('axios');
+        var data = JSON.stringify({
+            "cartid": [
+                parseInt(cartId)
+            ],
+            "address": {
+                "receiver": alamat.receiver,
+                "phone": alamat.phone,
+                "address": alamat.address
+            }
+        });
+
+        console.log(data)
+
+        var config = {
+            method: 'post',
+            url: 'http://13.214.37.101:8080/orders',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: data
+        };
+
+        axios(config)
+            .then(function (response) {
+                navigate("/order")
+                console.log(JSON.stringify(response.data));
+            })
+            .catch(function (error) {
+                console.log(error.response.data);
+            });
+
+    }
+
     return (
-        console.log(cart),
         <>
             <Table striped bordered hover className="text-center">
                 <thead>
@@ -77,9 +148,9 @@ const CartPage = () => {
                                 </td>
                                 <td className="">
                                     <h2>{obj.product_name}</h2>
-                                    {edit ?
+                                    {edit && temp === obj.id ?
                                         (
-                                            <Form onSubmit={(e) => handleSubmit(obj,e)}>
+                                            <Form onSubmit={(e) => handleSubmit(obj, e)}>
                                                 <FloatingLabel
                                                     controlId="floatingInput"
                                                     label="Quantity Product"
@@ -93,17 +164,26 @@ const CartPage = () => {
                                                 <Button type="submit">Submit</Button>
                                             </Form>
                                         ) :
-                                        (<p>{obj.quantity}</p>)}
-                                    <h5>IDR.{obj.price}</h5>
-                                    <Button>Order</Button>
-                                    <Button onClick={() => handleDelete(obj.id)}>Cancel Order</Button>
-                                    <Button onClick={() => handleEdit(obj)}>Edit</Button>
+                                        (<p>Quantity : {obj.quantity}</p>)}
+                                    <h5>IDR.{obj.price * obj.quantity}</h5>
+                                    <Button className="me-1" variant="dark" onClick={() => handleId(obj.id)}>Order</Button>
+                                    <Button className="me-1" variant="outline-dark" onClick={() => handleDelete(obj.id)}>Cancel Order</Button>
+                                    <Button variant="outline-dark" onClick={() => handleEdit(obj)}>Edit</Button>
                                 </td>
                             </tr>
                         )
                     })}
                 </tbody>
             </Table>
+            <ModalCart
+                // StateModal
+                show={show}
+                handleShow={handleShow}
+                handleClose={handleClose}
+                alamat={alamat}
+                inputData={inputData}
+                handleOrder={handleOrder}
+            />
         </>
     )
 }

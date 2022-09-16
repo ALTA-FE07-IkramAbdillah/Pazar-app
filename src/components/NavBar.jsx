@@ -50,7 +50,7 @@ function NavBar() {
             </Nav>
             <Form className="buttons">
               <NavLink to="/cart" className="btn btn-outline-dark me-2">
-                <i className="fa fa-shopping-cart me-1"></i> Cart(0)
+                <i className="fa fa-shopping-cart me-1"></i> Cart
               </NavLink>
               <NavLink to="/profile" className="btn btn-outline-dark me-2">
                 <i className="fa fa-user me-1"></i> Profile

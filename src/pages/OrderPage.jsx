@@ -1,17 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
+import ModalOrder from "../components/ModalOrder"
+import { Circles } from "react-loader-spinner"
+import { AnimationOnScroll } from 'react-animation-on-scroll';
 
 import Card from "react-bootstrap/Card";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Toast from "react-bootstrap/Toast";
-
+import axios from "axios"
+import { Accordion, Badge, Container } from "react-bootstrap";
 function OrderPage() {
   const [validated, setValidated] = useState(false);
+  const [list, setList] = useState([])
+  const [detail, setDetail] = useState([])
+  const [tampil, setTampil] = useState(false)
+  const [data, setData] = useState(null)
+  const [deal, setDeal] = useState(null)
+  const [loading, setLoading] = useState(false)
+
+  // Modal Product
+  const [show, setShow] = useState(false);
+  const handleClose = () => {
+    setShow(false);
+  };
+  const handleShow = () => setShow(true);
+  // dont distract
 
   const handleSubmit = (event) => {
     const form = event.currentTarget;
@@ -19,99 +37,129 @@ function OrderPage() {
       event.preventDefault();
       event.stopPropagation();
     }
-
     setValidated(true);
   };
 
+  // Get Api
+  const getApi = () => {
+    axios.get("http://13.214.37.101:8080/orders")
+      .then((res) => setList(res.data.data))
+  }
+  useEffect(() => {
+    getApi()
+  }, [])
+
+  // Get Detail
+  const getDetail = (id) => {
+    setTampil(true)
+    axios.get(`http://13.214.37.101:8080/orders/${id}`)
+      .then((res) => setDetail(res.data.data[0]))
+      .catch(err => err.response.data)
+  }
+  useEffect(() => {
+    getDetail()
+  }, [])
+
+  // HandlePaid
+  const handlePaid = (id) => {
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+      axios.post(`http://13.214.37.101:8080/orders/${id}/confirm`)
+        .then(() => {
+          getApi()
+          alert("Payment Successfully :)")
+        })
+    }, 3000);
+  }
+
+  // HandleCanceled
+  const handleCancel = (id) => {
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+      axios.put(`http://13.214.37.101:8080/orders/${id}/cancel`)
+        .then(() => {
+          getApi()
+          alert("Order Canceled :(")
+        })
+    }, 3000)
+  }
+
   return (
-    <Form noValidate validated={validated} onSubmit={handleSubmit}>
-      <Toast>
-        <Card style={{ width: "50rem" }}>
-          <Card.Img variant="" src="" />
-          <Card.Body>
-            <Card.Title>Shoes Mart</Card.Title>
-            <Card.Title>
-              <h3>Tsubasa Shoes</h3>
-            </Card.Title>
-            <Card.Text>
-              <Card.Text>Style AR4491-025 Nike_Air_Jordan_XIII_13_Retro_Kid_Children_Shoes_Brown</Card.Text>
-              <Card.Text>Colorway LIGHT BROWN</Card.Text>
-              <Card.Text>Release Date 11/24/2021</Card.Text>
-              <Card.Text>Retail Price $225</Card.Text>
-            </Card.Text>
-            <ButtonGroup aria-label="Basic example">
-              <Button variant="secondary">-</Button>
-              <Button variant="light">1</Button>
-              <Button variant="secondary">+</Button>
-            </ButtonGroup>
-          </Card.Body>
-        </Card>
-      </Toast>
-      <Card style={{ width: "50rem" }}>
-        <Card.Img variant="top" src="" />
-        <Card.Body>
-          <Card.Title>Jordan Store</Card.Title>
-          <Card.Title>
-            <h3>Hyuga Shoes</h3>
-          </Card.Title>
-          <Card.Text>
-            <Card.Text>Style 439358-021</Card.Text>
-            <Card.Text>Colorway BLACK/METALLIC GOLD-WHITE-GUM MEDIUM </Card.Text>
-            <Card.Text>Release Date 02/24/2018 </Card.Text>
-            <Card.Text>Retail Price $140</Card.Text>
-          </Card.Text>
-
-          <ButtonGroup aria-label="Basic example">
-            <Button variant="secondary">-</Button>
-            <Button variant="light">1</Button>
-            <Button variant="secondary">+</Button>
-          </ButtonGroup>
-        </Card.Body>
-      </Card>
-      <h1 align="right">Total Price : $ 365,-</h1>
-      <div>
-        <Card border="dark">
-          <Row className="mb-3">
-            <Form.Group as={Col} md="6" controlId="validationCustom01">
-              <Form.Label>extra note for courier</Form.Label>
-              <Form.Control required type="text" placeholder="type here.." defaultValue="" />
-              <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-            </Form.Group>
-
-            <Form.Group as={Col} md="6" controlId="validationCustomUsername">
-              <Form.Label>Shipping address</Form.Label>
-              <DropdownButton variant="secondary" md="4" id="dropdown-basic-button" title="address">
-                <Dropdown.Item href="#/action-1">jakarta</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Bogor</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Bandung</Dropdown.Item>
-              </DropdownButton>
-            </Form.Group>
-          </Row>
-          <Row className="mb-3">
-            <Form.Group as={Col} md="6" controlId="validationCustom05">
-              <Form.Label>select payment</Form.Label>
-              <DropdownButton variant="secondary" md="4" id="dropdown-basic-button" title="payment">
-                <Dropdown.Item href="#/action-1">Gopay</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Shopee</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Bank</Dropdown.Item>
-              </DropdownButton>
-            </Form.Group>
-            <Form.Group as={Col} md="6" controlId="validationCustom05">
-              <Form.Label>choose delivery courier</Form.Label>
-              <DropdownButton variant="secondary" md="4" id="dropdown-basic-button" title="Courier">
-                <Dropdown.Item href="#/action-1">JNE</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Si Cepat</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">TIKI</Dropdown.Item>
-              </DropdownButton>
-            </Form.Group>
-          </Row>
-          <Form.Group className="mb-3">
-            <Form.Check required label="Are you sure the data you have filled in is correct?" feedback="You must agree before submitting." feedbackType="invalid" />
-          </Form.Group>
-          <Button type="submit">I'm sure</Button>
-        </Card>
-      </div>
-    </Form>
+    <>
+      {loading ? <div style={{ width: "10%", marginTop: "600", margin: "auto" }}>
+        <Circles
+          height="100"
+          width="100"
+          radius="9"
+          color="green"
+          ariaLabel="three-dots-loading"
+          wrapperStyle
+          wrapperClass
+        />
+      </div> : ""}
+      
+        <Form noValidate validated={validated} onSubmit={handleSubmit}>
+          <Container>
+            <Row>
+              <h1 className="my-4 text-center">My Order</h1>
+              {list.map((obj, idx) => {
+                return (
+                  <Accordion onClick={() => getDetail(obj.ID)} className="w-100">
+                    <Accordion.Item eventKey={idx}>
+                      <Accordion.Header className="pt-2">
+                        <p>
+                          Penerima : <b className="ms-1">
+                            {obj.Address.Receiver ? obj.Address.Receiver : "Unknown"} ({obj.Address.Phone})
+                          </b> <br />
+                          Alamat : {obj.Address.Address ? obj.Address.Address : "Unknown"}
+                        </p>
+                      </Accordion.Header>
+                      <Accordion.Body>
+                        <Card >
+                          <Card.Img variant="" src="" />
+                          <Card.Body>
+                            <Card.Title>
+                              {tampil ? (<h1>{detail.ProductName}</h1>) : ""}
+                              <h4>IDR.{obj.Price}</h4>
+                            </Card.Title>
+                            <Row xl={2}>
+                              <Col xl={6}>
+                                <Card.Text>
+                                  <Badge bg={
+                                    (obj.Status === "Unpaid" && "warning") ||
+                                    (obj.Status === "Paid" && "success") ||
+                                    (obj.Status === "Canceled" && "danger")
+                                  }
+                                    text="dark">
+                                    {obj.Status}
+                                  </Badge>{' '}
+                                </Card.Text>
+                              </Col>
+                              <Col xl={6}>
+                                <Button className="float-end" variant="outline-dark" onClick={() => handleCancel(obj.ID)}>Cancel</Button>
+                                <Button className="float-end me-2" variant="dark" onClick={() => handlePaid(obj.ID)}>Checkout</Button>
+                              </Col>
+                            </Row>
+                          </Card.Body>
+                        </Card>
+                      </Accordion.Body>
+                    </Accordion.Item>
+                  </Accordion>
+                )
+              })}
+            </Row>
+          </Container>
+          {/* <ModalDeal
+          // StateModal
+          show={show}
+          handleShow={handleShow}
+          handleClose={handleClose}
+        /> */}
+        </Form>
+      
+    </>
   );
 }
 
