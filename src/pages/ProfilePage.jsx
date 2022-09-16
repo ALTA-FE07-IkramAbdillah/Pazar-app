@@ -6,7 +6,8 @@ import FormProfile from "../components/FormProfile";
 import { NavLink } from "react-router-dom";
 
 const ProfilePage = () => {
-  const [cookies] = useCookies();
+  const [cookies, removeCookie] = useCookies();
+
   // Initiate State
   const [list, setList] = useState([]);
   const [edit, setEdit] = useState(false);
@@ -80,12 +81,13 @@ const ProfilePage = () => {
   };
 
   // Delete Product
-  const handleDelete = (id) => {
+  const handleDelete = () => {
     axios
-      .delete(`http://13.214.37.101:8080/users/${id}`)
+      .delete(`http://13.214.37.101:8080/users`)
       .then(() => {
+        removeCookie("Token");
         getApi();
-        alert("Product Terhapus");
+        alert("Account deleted");
       })
       .catch((err) => console.log(err.response.data));
   };
@@ -111,9 +113,9 @@ const ProfilePage = () => {
               <h5 className="mt-3 ms-2">Profile</h5>
             </div>
             <div className="d-flex">
-              <button className="btn btn-outline-success mt-3 ms-3 ">
+              <NavLink to="/order" className="btn btn-outline-success mt-3 ms-3 ">
                 <i className="fa fa-book"></i>
-              </button>
+              </NavLink>
               <h5 className="mt-3 ms-2">My Order</h5>
             </div>
             <div className="d-flex">
@@ -123,9 +125,9 @@ const ProfilePage = () => {
               <h5 className="mt-3 ms-2">Manage Product</h5>
             </div>
             <div className="d-flex">
-              <button className="btn btn-outline-danger mt-3 ms-3 " onClick={() => handleDelete(list.id)}>
+              <NavLink to="/register" className="btn btn-outline-danger mt-3 ms-3 " onClick={() => handleDelete(list.id)}>
                 <i className="fa fa-trash"></i>
-              </button>
+              </NavLink>
               <h5 className="mt-3 ms-2 text-danger">Delete Account</h5>
             </div>
           </Col>
